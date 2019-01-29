@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="/posts/new/">new</a>
+    <h1>index 입니다.</h1>
     {% for post in posts %}
-        <li><a href="/posts/{{post.pk}}/">{{ post.title }}</a></li>
+    <a href='/post/{{post.pk}}'><li>title : {{post.title}}</li></a>
     {% endfor %}
-    <h1>첫 화면입니다.</h1>
+    <a href="/post/new">생성</a>
 </body>
 </html>

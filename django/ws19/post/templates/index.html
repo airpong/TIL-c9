@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hi</h1>
+    <form action='/post/search/' method='POST'>
+        {% csrf_token %}
+        <input type="text" name="name" value="검색"/>
+        <input type="submit" value="Submit"/>
+    </form>
+    {% for student in students%}
+    <a href="/post/{{student.pk}}"><li>{{student.name}}</li></a>
+    {% endfor %}
+    <a href='/post/new/'>생성</a>
+    <hr>
+    <h1 align="center">자유게시판</h1>
+    {% for post in posts%}
+    <li>{{post.name}} : {{post.message}}</li>
+    {% endfor %}
+</body>
+</html>

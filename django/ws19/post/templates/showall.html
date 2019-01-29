@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% for student in students %}
+    <h1>detail of {{student.pk}}</h1>
+    <li>name : {{student.name}}</li>
+    <li>email: {{student.email}}</li>
+    <li>birthday: {{student.birthday}}</li>
+    <li>age: {{student.age}}</li>
+    <a href="/post">list</a>
+    <a href="/post/{{student.pk}}/delete">delete</a>
+    <a href="/post/{{student.pk}}/update">edit</a>
+    <hr>
+    {% endfor %}
+</body>
+</html>
