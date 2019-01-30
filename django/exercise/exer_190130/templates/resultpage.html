@@ -7,10 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>index 입니다요.</h1>
-    {% for post in posts %}
-    <a href='/post/{{post.pk}}'><li>title : {{post.title}}</li></a>
+    {% for menu in question.choice_set.all %}
+        <li>{{menu.content}} : {{menu.votes}}</li>
     {% endfor %}
-    <a href="/post/new">생성</a>
 </body>
 </html>

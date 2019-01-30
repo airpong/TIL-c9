@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'post.apps.PostConfig',
+    'exer_190130.apps.Exer190130Config',
 ]
 
 MIDDLEWARE = [

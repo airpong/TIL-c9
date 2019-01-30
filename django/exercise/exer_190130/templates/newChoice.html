@@ -7,10 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>index 입니다요.</h1>
-    {% for post in posts %}
-    <a href='/post/{{post.pk}}'><li>title : {{post.title}}</li></a>
-    {% endfor %}
-    <a href="/post/new">생성</a>
+    <form action="upload/" method="post">
+        {% csrf_token %}
+        <input type="text" name="content"/>
+        <input type="submit" value="Submit"/>
+    </form>
 </body>
 </html>

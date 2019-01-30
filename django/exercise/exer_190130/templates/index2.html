@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 align='center'>질문 목록입니다.</h1>
+    {% for question in questions %}
+    <hr>
+        <h1>{{question.title}}</h1>
+        <a href="{% url 'exer_190130:newChoice' question.pk %}">새로운 선택지 추가</a>
+        {% for menu in question.choice_set.all %}
+        <li>
+            {{menu.content}}
+            <a href="{% url 'exer_190130:submit' question.pk menu.pk %}">제출</a>
+        </li>
+        {% endfor %}
+    {% endfor %}
+    <hr>
+    <hr>
+    <a href="{% url 'exer_190130:newquestion' %}">새로운 질문 등록</a>
+</body>
+</html>
