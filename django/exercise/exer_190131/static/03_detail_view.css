@@ -1,0 +1,70 @@
+#stiky{
+    position:fixed;
+    top:0px;
+    width:100%;
+    z-index: 1;
+}
+#header{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 400px;
+    /* width:100%; */
+    background-image: url('http://cfile230.uf.daum.net/image/18669A414D0E05D12322C5');
+}
+.h2{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Pacifico', cursive;
+}
+.font{
+    font-size:30px;
+    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Pen Script', cursive;
+}
+.cardlist{
+    margin-top: 3rem;
+}
+
+u{
+    margin-top:10px;
+}
+.hr{
+    width:70px;
+    border-color: red;
+}
+h4{
+    /* display:inline; */
+    border-bottom: 2px red;
+}
+.cardx{
+    margin-top:1rem;
+    margin-bottom: 1rem;
+}
+.container{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Pen Script', cursive;
+}
+.smallfontsize{
+    font-size: 20px;
+    font-family: 'Gaegu', cursive;
+}
+#bottom{
+    width:30px;
+    height:30px; 
+    position:relative;
+    left:90%;
+}
+#bottomN{
+    width:30px;
+    height:30px; 
+    position:relative;
+}
+footer{
+    background-color:gray;
+    height: 50px;
+    width:100%;
+    padding-left:3rem;
+    padding-right:3rem;
+    position:relative;
+}
