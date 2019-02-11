@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    Name: {{food.name}}
+    칼로리: {{food.calorie}}
+    재료: {{food.ingredients}}
+    카테고리: {{food.category}}
+    <a href="{% url 'post:update' food.pk %}">수정</a>
+    <a href="{% url 'post:delete' food.pk %}">삭제</a>
+    <form method='post'>
+        {% csrf_token %}
+        <input type="text" name="category"/>
+        <input type="submit" value="이동"/>
+    </form>
+</body>
+</html>
