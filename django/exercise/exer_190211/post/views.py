@@ -16,7 +16,9 @@ def index(request):
     
 def create(request,category):
     if request.method=="POST":
+        print(request.POST)
         form = PostModelForm(request.POST)
+        
         if form.is_valid():
             food = form.save()
             foods = Food.objects.filter(category=food.category)
