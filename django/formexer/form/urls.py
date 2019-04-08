@@ -1,4 +1,4 @@
-"""exer URL Configuration
+"""form URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -14,15 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
-from django.conf.urls.static import static
-from django.conf import settings
+from django.urls import path
+
 urlpatterns = [
-    path('form/', include('exerform.urls')),
-    path('menu/', include('exer_190130.urls')),
-    path('post/', include('post.urls')),
-    path('movie/', include('exer_190131.urls')),
     path('admin/', admin.site.urls),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
