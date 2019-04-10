@@ -1,13 +1,14 @@
 from django.db import models
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
-
+from django.conf import settings
 def post_image_path(abc, filename):
     return f'posts/{abc.content}/{filename}'
     
 
 # Create your models here.
 class post(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
     # image = models.ImageField(blank=True)
     image = ProcessedImageField(
