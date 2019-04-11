@@ -2,12 +2,16 @@
 {% load bootstrap4 %}
 {% block container %}
 
-<h1>Post form</h1>
-<form method="post" enctype="multipart/form-data">
+
+<div class="container">
+    <h1>Post form</h1>
+    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form post_form %}
     {% buttons %}
         <button type="submit" class="btn btn-warning">Submit</buttons>
     {% endbuttons %}
 </form>
+</div>
+
 {% endblock %}

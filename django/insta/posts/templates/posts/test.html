@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% block container %}
+<img src="{{ post.image.url }}" class="card-img-top mb-4" alt="{{ post.image }}" data-toggle="modal" data-target="#abc{{post.id}}">
+{% endblock %}
