@@ -1,5 +1,7 @@
 <div class="col-4">
-  <img src="{{ post.image.url }}" class="card-img-top mb-4" alt="{{ post.image }}" data-toggle="modal" data-target="#abc{{post.id}}">
+  {% for image in post.image_set.all %}
+  <img src="{{ image.file.url }}" class="card-img-top mb-4" alt="{{ image.file }}" data-toggle="modal" data-target="#abc{{image.Post.id}}">
+  {% endfor %}
 </div>
 <div class="modal fade bd-example-modal-lg" id="abc{{post.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -36,7 +38,7 @@
                   <div class="card-text">댓글이 없습니다.</div>
                   {% endfor %}
                   <hr>
-                  <a href='{% url 'posts:like' username post.id %}'>
+                  <a href="{% url 'posts:list' username %}">
                   {% if user in post.like_users.all %}
                     <i class="fas fa-heart"></i>
                   {% else %}

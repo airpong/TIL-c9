@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block container %}
+
+<h1>Post Form</h1>
+
+<form method = 'post' enctype='multipart/form-data'>
+    {% csrf_token %}
+    {% bootstrap_form post_form %}
+    {{ image_formset.as_p }}
+    {% buttons %}
+        <button type ="submit" class='btn btn-primary'>Submit</button>
+    {% endbuttons %}
+    
+</form>
+
+{% endblock %}
