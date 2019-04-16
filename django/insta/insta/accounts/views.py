@@ -4,22 +4,24 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth import get_user_model,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from .forms import CustomUserChangForm
+from .forms import CustomUserChangeForm,ProfileForm,CustonUserCreationForm
+from .models import Profile
 # Create your views here.
 
 def signup(request):
     if request.user.is_authenticated :
         return redirect('posts:list')
     if request.method == 'POST' :
-        signup_form = UserCreationForm(request.POST)
+        signup_form = CustonUserCreationForm(request.POST)
         if signup_form.is_valid() :
             user = signup_form.save()
+            Profile.objects.create(user=user)   #Profile 생성
             auth_login(request,user)
             return redirect('posts:list')
         else :
             return render(request, 'accounts/signup.html',{'signup_form':signup_form})
     else :
-        signup_form = UserCreationForm()
+        signup_form = CustonUserCreationForm()
         return render(request, 'accounts/signup.html',{'signup_form':signup_form})
 
 def login(request):
@@ -53,12 +55,12 @@ def people(request,username) :
 # User edit(회원정보 수정) - User CRUD 중 U
 def update(request):
     if request.method == 'POST':
-        user_change_form=CustomUserChangForm(request.POST,instance=request.user)
+        user_change_form=CustomUserChangeForm(request.POST,instance=request.user)
         if user_change_form.is_valid():
             user_change_form.save()
             return redirect('accounts:people',request.user.username)
     else:
-        user_change_form = CustomUserChangForm(instance=request.user)
+        user_change_form = CustomUserChangeForm(instance=request.user)
         return render(request,'accounts/update.html',{'user_change_form':user_change_form})
         
 
@@ -73,9 +75,35 @@ def password(request):
     if request.method=='POST':
         password_change_form = PasswordChangeForm(request.user,request.POST)
         if password_change_form.is_valid():
+            
             user = password_change_form.save()
+            
+            
             update_session_auth_hash(request,user)
             return redirect('accounts:people',request.user.username)
     else:
         password_change_form = PasswordChangeForm(request.user)
     return render(request,'accounts/password.html',{'password_change_form':password_change_form})
+    
+def profile_update(request):
+    profile = request.user.profile
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST,request.FILES,instance=profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('accounts:people',request.user.username)
+    else:
+        profile_form = ProfileForm(instance=profile)
+    return render(request,'accounts/profile_update.html',{'profile_form':profile_form})
+    
+    
+
+def follow(request, user_id):
+    people = get_object_or_404(get_user_model(), id=user_id)
+    if request.user in people.followers.all():
+        # 2. people을 unfollow 하기
+        people.followers.remove(request.user)
+    else:
+        # 1. people을 follow하기
+        people.followers.add(request.user)
+    return redirect('accounts:people',people.username)
