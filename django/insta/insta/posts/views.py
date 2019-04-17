@@ -5,11 +5,13 @@ from .forms import PostForm,CommentForm,ImageFormSet
 from .models import Post,Comment
 from django.db import transaction
 from itertools import chain
+
 # Create your views here.
 def explore(request):
     posts = Post.objects.order_by('-id').all()
     comment_form = CommentForm()
     return render(request,'posts/list.html',{'posts':posts,'comment_form':comment_form})
+    
 @login_required
 def list(request) :
     # posts = Post.objects.order_by('-id').all()
