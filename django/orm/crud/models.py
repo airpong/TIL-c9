@@ -2,8 +2,9 @@ from django.db import models
 
 # Create your models here.
 class Post(models.Model):
-    title = models.TextField()
-
+    title = models.TextField(blank=False,default=None)
+    def __str__(self):
+        return '{} : {}'.format(self.id,self.title)
 
 # 정리  
 # class Post : / in_Django - Model / in_DB - Table / 
