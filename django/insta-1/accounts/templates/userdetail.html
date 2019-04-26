@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block container %}
+{{user.username}}
+follow : {{user.followers.count}}
+following : {{user.following.count}}
+{% if request.user != user %}
+{% if request.user in user.followers.all %}
+<a href="{% url 'accounts:follow' user.username %}">unfollow</a>
+{% else %}
+<a href="{% url 'accounts:follow' user.username %}">follow</a>
+{% endif %}
+{% else %}
+<a href="{% url 'accounts:update' user.username %}">회원 정보 수정</a>
+<a href="">회원 삭제</a>
+<a href="{% url 'accounts:password' user.username %}">비밀번호 수정</a>
+{% endif %}
+{% endblock %}

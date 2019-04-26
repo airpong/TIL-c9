@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block container %}
+{% for post in posts %}
+<div>
+    {{post.content}} /
+    {{post.user.username}} /
+    <a href="{% url 'posts:like' post.id %}">좋아요</a> /
+    좋아요 개수 :{{post.like_users.count}} 
+</div>
+{% endfor %}
+{% endblock %}

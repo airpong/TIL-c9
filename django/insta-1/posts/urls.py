@@ -1,0 +1,8 @@
+from django.urls import path
+from . import views
+app_name = 'posts'
+urlpatterns = [
+    path('',views.postlist,name="postlist"),
+    path('<int:post_id>/like/',views.like,name="like"),
+
+]

@@ -97,7 +97,7 @@ def profile_update(request):
     return render(request,'accounts/profile_update.html',{'profile_form':profile_form})
     
     
-
+@login_required
 def follow(request, user_id):
     people = get_object_or_404(get_user_model(), id=user_id)
     if request.user in people.followers.all():
@@ -107,3 +107,4 @@ def follow(request, user_id):
         # 1. people을 follow하기
         people.followers.add(request.user)
     return redirect('accounts:people',people.username)
+    
