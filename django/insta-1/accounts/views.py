@@ -8,6 +8,8 @@ from django.contrib.auth import get_user_model,update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 def signup(request):
+    if request.user.is_authenticated :
+        return redirect('posts:list')
     if request.method == "GET":
         form = CustomUserCreationForm()
         return render(request,'forms.html',{'form':form})
